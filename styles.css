@@ -2,6 +2,10 @@ body{
     float:left; 
     border-style: dashed;
         }
+        
+#introQuotes{
+    text-size-adjust: 8px;
+        }
 
 h2 {
     text-align: center;
@@ -12,9 +16,11 @@ h2 {
     display: inline;
     padding: 10px;
     white-space: pre-line;
-    
+    text-align: center;
+    margin-left: 5px; 
 }
 
 #dove {
     max-width: 5cm;
+    text-align: center;
 }
