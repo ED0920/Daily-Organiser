@@ -22,7 +22,7 @@ body {
 .main{
     display: grid;
     grid-template-columns: 75% 25%;
-  }
+}
 
 .textarea {
     background: transparent;
@@ -38,7 +38,7 @@ body {
     flex-direction: column;
   } 
 
- .timeblock{
+.timeblock{
     display: flex;
     border:1px solid black;
     background-color: #ffffff;
@@ -48,85 +48,105 @@ body {
     width: 100px;
 }
 
- .description {
-    white-space: pre-wrap;
-    padding: 5px;
-    display:flex;
-    justify-content: flex-start;
-    flex:1;
-    border: 1px black dotted;
-  }
-  .saveBtn {
-    border-left: 1px solid black;
-    border-radius: 5px;
-    background-color: #35A7FF;
-    color: white;
-    width:100px;
-  }
-  
-  .saveBtn i:hover {
-    font-size: 20px;
-    transition: all 0.3s ease-in-out;
-  }
+.description {
+  white-space: pre-wrap;
+  padding: 5px;
+  display:flex;
+  justify-content: flex-start;
+  flex:1;
+  border: 1px black dotted;
+}
+.saveBtn {
+  border-left: 1px solid black;
+  border-radius: 5px;
+  background-color: #35A7FF;
+  color: white;
+  width:100px;
+}
 
-  .time-block {
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-  }
+.saveBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.time-block {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
   
 
-  
-  
-  <!-- Example of a past time block. The "past" class adds a gray background color. -->
-  .past {
-    background-color: #38618C;
-    color: white;
-  }
-  
-  
-  <!-- Example of a a present time block. The "present" class adds a red background color. -->
-  .present {
-    background-color: #FF5964;
-    color: white;
-  }
-  
-  <!-- Example of a future time block. The "future" class adds a green background color. -->
-  .future {
-    background-color: #35A7FF;
-    color: white;
-  }
-  
- 
-  .right-panel{
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-    background-color:;
-  }
+/* Example of a past time block. The "past" class adds a gray background color. */
+.past {
+  background-color: #38618C;
+  color: white;
+}
 
 
-  .weather{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+/* Example of a a present time block. The "present" class adds a red background color. */
+.present {
+  background-color: #FF5964;
+  color: white;
+}
+
+/* Example of a future time block. The "future" class adds a green background color. */
+.future {
+  background-color: #35A7FF;
+  color: white;
+}
+
+.right-panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  background-color:;
+}
+
+
+.weather{
+  border: 1px black dotted;
+  padding: 10px;
+}
 
 .todo {
     border: 1px black dotted;
     padding: 10px;
 }
 
-  .news{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+.news{
+  border: 1px black dotted;
+  padding: 10px;
+}
 
-  .word-containter{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+.word-containter{
+  border: 1px black dotted;
+  padding: 10px;
+}
 
-  .quote-container{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+.quote-container{
+  border: 1px black dotted;
+  padding: 10px;
+}
+
+#introQuotes {
+  text-size-adjust: 8px;
+}
+
+.quote h2 {
+  text-align: center;
+}
+
+#quote {
+  color: blanchedalmond;
+  background-color: blueviolet;
+  display: inline;
+  padding: 10px;
+  white-space: pre-line;
+  text-align: center;
+  margin-left: 5px;
+}
+
+#dove {
+  max-width: 5cm;
+  text-align: center;
+}
