@@ -1,0 +1,20 @@
+body{
+    float:left; 
+    border-style: dashed;
+        }
+
+h2 {
+    text-align: center;
+}        
+#quote {
+    color: blanchedalmond;
+    background-color: blueviolet;
+    display: inline;
+    padding: 10px;
+    white-space: pre-line;
+    
+}
+
+#change {
+    text-align: center;
+}
