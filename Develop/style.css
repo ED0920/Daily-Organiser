@@ -1,0 +1,132 @@
+/* body {
+    color: #FFE74C;
+    color: #FF5964;
+    color: #fffff;
+    color: #38618C;
+    color: #35A7FF;
+} */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+  }
+
+.title{
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    background-color:#FFE74C;
+    color:#38618C;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 75% 25%;
+  }
+
+.textarea {
+    background: transparent;
+    border: none;
+    color: #000000;
+    border-left: 1px solid black;
+    padding: 10px;
+  }
+
+.calendar{
+    background-color: #35A7FF;
+    display:flex;
+    flex-direction: column;
+  } 
+
+ .timeblock{
+    display: flex;
+    border:1px solid black;
+    background-color: #ffffff;
+    color: #000000;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+}
+
+ .description {
+    white-space: pre-wrap;
+    padding: 5px;
+    display:flex;
+    justify-content: flex-start;
+    flex:1;
+    border: 1px black dotted;
+  }
+  .saveBtn {
+    border-left: 1px solid black;
+    border-radius: 5px;
+    background-color: #35A7FF;
+    color: white;
+    width:100px;
+  }
+  
+  .saveBtn i:hover {
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .time-block {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+
+  
+  
+  <!-- Example of a past time block. The "past" class adds a gray background color. -->
+  .past {
+    background-color: #38618C;
+    color: white;
+  }
+  
+  
+  <!-- Example of a a present time block. The "present" class adds a red background color. -->
+  .present {
+    background-color: #FF5964;
+    color: white;
+  }
+  
+  <!-- Example of a future time block. The "future" class adds a green background color. -->
+  .future {
+    background-color: #35A7FF;
+    color: white;
+  }
+  
+ 
+  .right-panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    background-color:;
+  }
+
+
+  .weather{
+    border: 1px black dotted;
+    padding: 10px;
+  }
+
+.todo {
+    border: 1px black dotted;
+    padding: 10px;
+}
+
+  .news{
+    border: 1px black dotted;
+    padding: 10px;
+  }
+
+  .word-containter{
+    border: 1px black dotted;
+    padding: 10px;
+  }
+
+  .quote-container{
+    border: 1px black dotted;
+    padding: 10px;
+  }
