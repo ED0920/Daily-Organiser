@@ -98,12 +98,12 @@ body {
   }
   
  
-  .right-panel{
+.right-panel{
     display: flex;
     flex-direction: column;
     justify-content: right;
     background-color:;
-  }
+}
 
 
   .weather{
@@ -116,17 +116,30 @@ body {
     padding: 10px;
 }
 
-  .news{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+#todo-header {
+    color: goldenrod;
+}
 
-  .word-containter{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+.todo-done {
+    text-decoration: line-through;
+    color: brown;
+}
 
-  .quote-container{
+.todo-not-done {
+    text-decoration: none;
+}
+
+.news{
     border: 1px black dotted;
     padding: 10px;
-  }
+}
+
+.word-containter{
+    border: 1px black dotted;
+    padding: 10px;
+}
+
+.quote-container{
+    border: 1px black dotted;
+    padding: 10px;
+}
