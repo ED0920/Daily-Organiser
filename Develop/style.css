@@ -21,7 +21,9 @@ body {
 
 .main{
     display: grid;
+    
     grid-template-columns: 75% 25%;
+    
 }
 
 .textarea {
@@ -30,7 +32,10 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
+  
   }
+
+
 
 .calendar{
     background-color: #35A7FF;
@@ -141,11 +146,11 @@ body {
   text-align: center;
 }
 
-.quote #quote {
+.quote #quote, #author {
   text-align: center;
   color: blanchedalmond;
   background-color: blueviolet;
-  display: inline;
+  display: inline-flex;
   padding: 10px;
   white-space: pre-line;
   margin-left: 0px;
