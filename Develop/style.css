@@ -78,20 +78,20 @@ body {
 
   
   
-  <!-- Example of a past time block. The "past" class adds a gray background color. -->
+  /* Example of a past time block. The "past" class adds a gray background color. */
   .past {
     background-color: #38618C;
     color: white;
   }
   
   
-  <!-- Example of a a present time block. The "present" class adds a red background color. -->
+  /* Example of a a present time block. The "present" class adds a red background color. */
   .present {
     background-color: #FF5964;
     color: white;
   }
   
-  <!-- Example of a future time block. The "future" class adds a green background color. -->
+  /* Example of a future time block. The "future" class adds a green background color. */
   .future {
     background-color: #35A7FF;
     color: white;
@@ -102,7 +102,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: right;
-    background-color:;
+    background-color: #FF5964;
 }
 
 
