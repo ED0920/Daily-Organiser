@@ -1,9 +1,42 @@
-/*
- * Global variables for todo list
- */
+//Global variables for todo list
+
 var eventInputEl = $("#event-input")
 var toDoListEl = $('#to-do-list');
 var count = 0;
+
+// Create a function that will add checkboxes
+function addTodoItem(todo, completed) {
+
+  // Add a checkbox and label. Set the style based on whether the item
+  // is completed or not
+  if (completed)
+  {
+    toDoListEl.append("<input type=\"checkbox\" class=\"form-check-input\" id=\"task-" + count + "\" checked>");
+    toDoListEl.append("<label class=\"form-check-label todo-done\" for=\"task-" + count + "\">" + todo + "</label><br>");
+  } else {
+    toDoListEl.append("<input type=\"checkbox\" class=\"form-check-input\" id=\"task-" + count + "\">");
+    toDoListEl.append("<label class=\"form-check-label\" for=\"task-" + count + "\">" + todo + "</label><br>");
+  }
+  
+  // Add item to local storage. If it is already there, it will override the existing item.
+  var todoItem = {"todo": todo, "completed": completed};
+  window.localStorage.setItem("todo-"+count, JSON.stringify(todoItem));
+
+  // Update the todo list count in local storage
+  count++;
+  window.localStorage.setItem("todo-count", count);
+}
+
+// Restore the saved list from local storage
+function restoreTodoList() {
+  var todoCount = parseInt(localStorage.getItem('todo-count')); 
+
+  for (var i = 0; i < todoCount; i++)
+  {
+    var todoItem = JSON.parse(window.localStorage.getItem('todo-'+i));
+    addTodoItem(todoItem.todo, todoItem.completed);
+  }
+}
 
 // 
 $(function(){
@@ -38,24 +71,35 @@ $(function(){
       }
     }
 
-    /* Create a function that will add checkboxes */
-    function addToDo(todo) {
-        toDoListEl.append("<input type=\"checkbox\" class=\"form-check-input\" id=\"task-" + count + "\">");
-        toDoListEl.append("<label class=\"form-check-label\" for=\"task-" + count + "\">" + todo + "</label><br>");
-        count++;
+    ///////////////////////////////////////////////////////////////////////////
+    ///
+    /// Todo list functionality
+    ///
+    ///
+
+    // check if 'todo-count' has been saved to local storage
+    // if it has not, save and set it to zero.
+    if (window.localStorage.getItem('todo-count') === null)
+    {
+        window.localStorage.setItem('todo-count', 0);
     }
-    
-    /* An event lister for changes to the event textbox */
+
+    // An event lister for changes to the event textbox
     eventInputEl.change(function() {
-        addToDo(eventInputEl.val());
+        addTodoItem(eventInputEl.val(), false);
         eventInputEl.val("Enter event!");
     });
+
+    // restore save todo list
+    restoreTodoList();
     
-    /* An event lister for all checkboxes */
+    // An event lister for all checkboxes
     $(".form-check").change(function() {
         var checkboxBtn = $(this).children("input");
         var checkboxLbl = $(this).children("label");
         
+        // Loop through the checkboxes and set the style based on whether
+        // the checkbox is set
         for(var i = 0; i < checkboxBtn.length; i++)
         {
             if (checkboxBtn[i].checked) {
@@ -65,6 +109,11 @@ $(function(){
                 $(checkboxLbl[i]).addClass('todo-not-done');
                 $(checkboxLbl[i]).removeClass('todo-done');
             }
+
+            // Save the state of the checkbox to local storage
+            var todoItem = JSON.parse(window.localStorage.getItem('todo-'+i));
+            todoItem.completed = checkboxBtn[i].checked;
+            window.localStorage.setItem("todo-"+i, JSON.stringify(todoItem));
         }
     });
 });
