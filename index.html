@@ -14,6 +14,10 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
+    <link 
+      rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
@@ -118,11 +122,14 @@
         <section class="right-panel">
 
             
-            <div class="weather">
-                <div>Weather</div>
-                <div id="temp" class="temp">20'C</div>
-                <i>sun icon</i>
+          <div class="card weather">
+            <div class="card-body">
+              <h5 class="card-title">Sydney Weather</h5>
+              <h6 id="weather-description" class="card-subtitle mb-2 text-muted"></h6>
+              <h3 id="weather-temp" class="card-title"></h3>
+              <img id="weather-icon">
             </div>
+          </div>
 
             <div class="todo">
                 <h3>Todo:</h3>

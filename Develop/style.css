@@ -108,7 +108,7 @@ body {
 
   .weather{
     border: 1px black dotted;
-    padding: 10px;
+    /* padding: 10px; */
   }
 
 .todo {
