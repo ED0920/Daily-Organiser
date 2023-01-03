@@ -79,7 +79,6 @@ body {
   display: flex;
   flex-direction: row;
 }
-  
 
 /* Example of a past time block. The "past" class adds a gray background color. */
 .past {
@@ -118,6 +117,34 @@ body {
     padding: 10px;
 }
 
+#todo-header {
+    color: goldenrod;
+}
+
+.todo-done {
+    text-decoration: line-through;
+    color: brown;
+}
+
+.todo-not-done {
+    text-decoration: none;
+}
+
+.news{
+    border: 1px black dotted;
+    padding: 10px;
+}
+
+.word-containter{
+    border: 1px black dotted;
+    padding: 10px;
+}
+
+.quote-container{
+    border: 1px black dotted;
+    padding: 10px;
+}
+
 .news{
   border: 1px black dotted;
   padding: 10px;
@@ -138,6 +165,7 @@ body {
   text-size-adjust: 8px;
   text-align: left;
 }
+
 #introQuotes p{
   size: 7px;
 }
