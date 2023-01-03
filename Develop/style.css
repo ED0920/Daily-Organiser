@@ -1,28 +1,44 @@
-/* body {
-    color: #FFE74C;
-    color: #FF5964;
-    color: #fffff;
-    color: #38618C;
-    color: #35A7FF;
-} */
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-  }
+.header{
+    background-size: cover;
+    color: #38618C;   
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0px white solid;
+}
 
-.title{
+.head-image{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.header h1{
+    position:absolute;
     padding-top: 25px;
     padding-left: 25px;
     padding-bottom: 25px;
-    background-color:#FFE74C;
-    color:#38618C;
+    color: white;
+}
+
+.date {
+    display: flex;
+    justify-content: right;
+    position: absolute;
+    padding: 25px;
+    margin-left:1000px;
+    color: white;
+    font-size: 24px;
 }
 
 .main{
     display: grid;
+    
     grid-template-columns: 75% 25%;
-  }
+    
+}
 
 .textarea {
     background: transparent;
@@ -30,7 +46,10 @@ body {
     color: #000000;
     border-left: 1px solid black;
     padding: 10px;
+  
   }
+
+
 
 .calendar{
     background-color: #35A7FF;
@@ -38,7 +57,7 @@ body {
     flex-direction: column;
   } 
 
- .timeblock{
+.timeblock{
     display: flex;
     border:1px solid black;
     background-color: #ffffff;
@@ -48,50 +67,44 @@ body {
     width: 100px;
 }
 
- .description {
-    white-space: pre-wrap;
-    padding: 5px;
-    display:flex;
-    justify-content: flex-start;
-    flex:1;
-    border: 1px black dotted;
-  }
-  .saveBtn {
-    border-left: 1px solid black;
-    border-radius: 5px;
-    background-color: #35A7FF;
-    color: white;
-    width:100px;
-  }
-  
-  .saveBtn i:hover {
-    font-size: 20px;
-    transition: all 0.3s ease-in-out;
-  }
+.description {
+  white-space: pre-wrap;
+  padding: 5px;
+  display:flex;
+  justify-content: flex-start;
+  flex:1;
+  border: 1px black dotted;
+}
+.saveBtn {
+  border-left: 1px solid black;
+  border-radius: 5px;
+  background-color: #35A7FF;
+  color: white;
+  width:100px;
+}
 
-  .time-block {
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-  }
-  
+.saveBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
 
+.time-block {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
   
-  
-  <!-- Example of a past time block. The "past" class adds a gray background color. -->
   .past {
     background-color: #38618C;
     color: white;
   }
   
   
-  <!-- Example of a a present time block. The "present" class adds a red background color. -->
   .present {
     background-color: #FF5964;
     color: white;
   }
   
-  <!-- Example of a future time block. The "future" class adds a green background color. -->
   .future {
     background-color: #35A7FF;
     color: white;
@@ -102,13 +115,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: right;
-    background-color:;
+   display:table;
+   width:100%;
   }
 
 
   .weather{
     border: 1px black dotted;
-    padding: 10px;
+    /* padding: 10px; */
   }
 
 .todo {
@@ -116,17 +130,61 @@ body {
     padding: 10px;
 }
 
+#todo-header {
+    color: goldenrod;
+}
+
+.todo-done {
+    text-decoration: line-through;
+    color: brown;
+}
   .news{
     border: 1px black dotted;
-    padding: 10px;
+    padding: 10px 10px 250px 10px;
   }
 
-  .word-containter{
+  .word-container {
     border: 1px black dotted;
     padding: 10px;
   }
 
-  .quote-container{
-    border: 1px black dotted;
-    padding: 10px;
-  }
+.todo-not-done {
+    text-decoration: none;
+}
+
+
+.quote-container{
+  border: 1px black dotted;
+  padding: 10px;
+  text-align: center;
+}
+
+#introQuotes {
+  text-size-adjust: 8px;
+  text-align: left;
+}
+
+#introQuotes p{
+  size: 7px;
+}
+
+.quote h2 {
+  text-align: center;
+}
+
+.quote #quote, #author {
+  text-align: center;
+  color: blanchedalmond;
+  background-color: blueviolet;
+  display: inline-flex;
+  padding: 10px;
+  white-space: pre-line;
+  margin-left: 0px;
+  margin-bottom: 10px;
+}
+
+#dove {
+  max-width: 20rem;
+  max-height: 8rem;
+  text-align: center;
+}
