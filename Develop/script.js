@@ -47,7 +47,7 @@ $(function(){
     currentDateEl.innerHTML = d
 
     // save text to local storage 
-    for (let i = 9; i < 18; i++){
+    for (let i = 9; i < 21; i++){
       document.getElementById("saveBtn"+ i).addEventListener("click", function() {
         console.log("text"+i);
         console.log(document.getElementById("text"+i)); 
@@ -58,15 +58,15 @@ $(function(){
     }
     
     // change colour of text background pending time of day
-    for (var i=9; i<18; i++){
+    for (var i=9; i<21; i++){
       if (i < currentHour){
-        document.getElementById("text"+i).style.backgroundColor = '#ebebeb'
+        document.getElementById("hour-"+i).style.backgroundColor = 'grey'
       }
       if (i === currentHour){
         document.getElementById("text"+i).style.backgroundColor = "#957fef"
       }
       if (i > currentHour){
-        document.getElementById("text" + i).style.backgroundColor = '#cee4f4'
+        document.getElementById("hour-"+i).style.backgroundColor = 'blue'
       }
     }
 
