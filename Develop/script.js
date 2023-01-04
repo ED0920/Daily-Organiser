@@ -80,13 +80,13 @@ $(function () {
   // change colour of text background pending time of day
   for (var i = 9; i < 21; i++) {
     if (i < currentHour) {
-      document.getElementById("hour-" + i).style.backgroundColor = "grey";
+      document.getElementById("text" + i).style.backgroundColor = "#e9ecef";
     }
     if (i === currentHour) {
       document.getElementById("text" + i).style.backgroundColor = "#957fef";
     }
     if (i > currentHour) {
-      document.getElementById("hour-" + i).style.backgroundColor = "blue";
+      document.getElementById("text" + i).style.backgroundColor = "#cee4f4";
     }
   }
 
@@ -206,3 +206,6 @@ function setQuote(requestUrl) {
   }
 }
 setQuote(requestUrl);
+
+
+
