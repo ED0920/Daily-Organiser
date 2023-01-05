@@ -62,7 +62,7 @@ $(function () {
   currentDateEl.innerHTML = d;
 
   // save text to local storage
-  for (let i = 9; i < 21; i++) {
+  for (let i = 9; i < 22; i++) {
     document
       .getElementById("saveBtn" + i)
       .addEventListener("click", function () {
@@ -78,7 +78,7 @@ $(function () {
   }
 
   // change colour of text background pending time of day
-  for (var i = 9; i < 21; i++) {
+  for (var i = 9; i < 22; i++) {
     if (i < currentHour) {
       document.getElementById("text" + i).style.backgroundColor = "#e9ecef";
     }
