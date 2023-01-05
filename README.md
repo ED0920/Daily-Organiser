@@ -2,7 +2,7 @@
 
 ## User Story
 ````
-AS AN employee with a busy schedule
+AS A Uni student with a busy schedule
 I WANT a one-stop-shop daily organiser
 SO THAT I can write a ToDo list while seeing news, weather, word of the day & daily quote
 ````
