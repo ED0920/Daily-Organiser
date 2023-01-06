@@ -1,64 +1,11 @@
-//Global variables for todo list
-
-var eventInputEl = $("#event-input");
-var toDoListEl = $("#to-do-list");
+//Global variables
 var count = 0;
-
-// Create a function that will add checkboxes
-function addTodoItem(todo, completed) {
-  // Add a checkbox and label. Set the style based on whether the item
-  // is completed or not
-  if (completed) {
-    toDoListEl.append(
-      '<input type="checkbox" class="form-check-input" id="task-' +
-        count +
-        '" checked>'
-    );
-    toDoListEl.append(
-      '<label class="form-check-label todo-done" for="task-' +
-        count +
-        '">' +
-        todo +
-        "</label><br>"
-    );
-  } else {
-    toDoListEl.append(
-      '<input type="checkbox" class="form-check-input" id="task-' + count + '">'
-    );
-    toDoListEl.append(
-      '<label class="form-check-label" for="task-' +
-        count +
-        '">' +
-        todo +
-        "</label><br>"
-    );
-  }
-
-  // Add item to local storage. If it is already there, it will override the existing item.
-  var todoItem = { todo: todo, completed: completed };
-  window.localStorage.setItem("todo-" + count, JSON.stringify(todoItem));
-
-  // Update the todo list count in local storage
-  count++;
-  window.localStorage.setItem("todo-count", count);
-}
-
-// Restore the saved list from local storage
-function restoreTodoList() {
-  var todoCount = parseInt(localStorage.getItem("todo-count"));
-
-  for (var i = 0; i < todoCount; i++) {
-    var todoItem = JSON.parse(window.localStorage.getItem("todo-" + i));
-    addTodoItem(todoItem.todo, todoItem.completed);
-  }
-}
 
 $(function () {
   let currentDateEl = document.getElementById("currentDay");
   var d = new dayjs().format("dddd, MMMM DD");
   const currentD = new Date();
   var currentHour = currentD.getHours();
-  console.log(currentHour);
   currentDateEl.innerHTML = d;
 
   // save text to local storage
@@ -66,8 +13,6 @@ $(function () {
     document
       .getElementById("saveBtn" + i)
       .addEventListener("click", function () {
-        console.log("text" + i);
-        console.log(document.getElementById("text" + i));
         window.localStorage.setItem(
           "key" + i,
           document.getElementById("text" + i).value
@@ -90,56 +35,167 @@ $(function () {
     }
   }
 
-  ///////////////////////////////////////////////////////////////////////////
-  ///
-  /// Todo list functionality
-  ///
-  ///
+  // Load the 'todo' list
+  loadTodoList();
 
+  // Load today's weather
+  loadLocalWeather();
+});
+
+/*
+ * This function loads and initialises the todo list.
+ */ 
+function loadTodoList() {
   // check if 'todo-count' has been saved to local storage
   // if it has not, save and set it to zero.
   if (window.localStorage.getItem("todo-count") === null) {
     window.localStorage.setItem("todo-count", 0);
   }
 
-  // An event lister for changes to the event textbox
-  eventInputEl.change(function () {
-    addTodoItem(eventInputEl.val(), false);
-    eventInputEl.val("Enter event!");
-  });
+  var todoCount = parseInt(localStorage.getItem("todo-count"));
 
-  // restore save todo list
-  restoreTodoList();
+  for (var i = 0; i < todoCount; i++) {
+    var todoItem = JSON.parse(window.localStorage.getItem("todo-" + i));
+    addTodoItem(todoItem.todo, todoItem.completed);
+  }
+
+  // An event lister for changes to the event textbox
+  $("#event-input").on("change", handleAddTodo);
 
   // An event lister for all checkboxes
-  $(".form-check").change(function () {
-    var checkboxBtn = $(this).children("input");
-    var checkboxLbl = $(this).children("label");
+  $(".form-check").on("change", handleCheckboxChange);
+}
 
-    // Loop through the checkboxes and set the style based on whether
-    // the checkbox is set
-    for (var i = 0; i < checkboxBtn.length; i++) {
-      if (checkboxBtn[i].checked) {
-        $(checkboxLbl[i]).removeClass("todo-not-done");
-        $(checkboxLbl[i]).addClass("todo-done");
-      } else {
-        $(checkboxLbl[i]).addClass("todo-not-done");
-        $(checkboxLbl[i]).removeClass("todo-done");
-      }
+function handleAddTodo() {
+  addTodoItem($("#event-input").val(), false);
+  $("#event-input").val("Enter event!");
+}
 
-      // Save the state of the checkbox to local storage
-      var todoItem = JSON.parse(window.localStorage.getItem("todo-" + i));
-      todoItem.completed = checkboxBtn[i].checked;
-      window.localStorage.setItem("todo-" + i, JSON.stringify(todoItem));
+function handleCheckboxChange() {
+  var checkboxBtn = $(this).children("input");
+  var checkboxLbl = $(this).children("label");
+
+  // Loop through the checkboxes and set the style based on whether
+  // the checkbox is set
+  for (var i = 0; i < checkboxBtn.length; i++) {
+    if (checkboxBtn[i].checked) {
+      $(checkboxLbl[i]).removeClass("todo-not-done");
+      $(checkboxLbl[i]).addClass("todo-done");
+    } else {
+      $(checkboxLbl[i]).addClass("todo-not-done");
+      $(checkboxLbl[i]).removeClass("todo-done");
     }
+
+    // Save the state of the checkbox to local storage
+    var todoItem = JSON.parse(window.localStorage.getItem("todo-" + i));
+    todoItem.completed = checkboxBtn[i].checked;
+    window.localStorage.setItem("todo-" + i, JSON.stringify(todoItem));
+  }
+}
+
+function handleTodoDelete(id) {
+
+  //todo-button-x
+  var deleteId = 'todo-' + id.slice(12);
+
+  // Update local storage to remove item
+  // Create an array with all the todo items we want to keep
+  // Adjust the ids
+  var todoCount = parseInt(localStorage.getItem("todo-count"));
+  var todoList = [];
+  for (var i = 0, j = 0; i < todoCount; i++)
+  {
+    var todoKey = "todo-"+i;
+
+    // If the key is for the item to delete, do not add it to the array
+    if (deleteId != todoKey) {
+      todoList.push([ 'todo-'+j, window.localStorage.getItem(todoKey)]);
+      j++;
+    }
+
+    // Remove the item from local storage
+    window.localStorage.removeItem(todoKey);
+  }
+
+  // Restore the items. This will restore all except the item deleted.
+  for (var i = 0; i < todoList.length; i++)
+  {
+    window.localStorage.setItem(todoList[i][0], todoList[i][1]);
+  }
+
+  // Update the todo list count in local storage
+  todoCount--;
+
+  if (todoCount < 0)
+  {
+    todoCount = 0;
+  }
+
+  window.localStorage.setItem("todo-count", todoCount);
+  
+  window.location.reload();
+}
+
+// Create a function that will add checkboxes
+function addTodoItem(todo, completed) {
+  // Add a checkbox and label. Set the style based on whether the item
+  // is completed or not
+  if (completed) {
+    $("#to-do-list").append(
+      '<input type="checkbox" class="form-check-input" id="task-' +
+        count +
+        '" checked>'
+    );
+    $("#to-do-list").append(
+      '<label class="form-check-label todo-done" for="task-' +
+        count +
+        '">' +
+        todo +
+        '<button type="button" id="task-button-' +
+        count +
+        '"  class="close" aria-label="Close">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">' +
+        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>' +
+        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>' +
+        "</svg></button>" +
+        "</label><br>"
+    );
+  } else {
+    $("#to-do-list").append(
+      '<input type="checkbox" class="form-check-input" id="task-' + count + '">'
+    );
+    $("#to-do-list").append(
+      '<label class="form-check-label" for="task-' +
+        count +
+        '">' +
+        todo +
+        '<button type="button" id="task-button-' +
+        count +
+        '" class="close" aria-label="Close">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">' +
+        '<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>' +
+        '<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>' +
+        "</svg></button>" +
+        "</label><br>"
+    );
+  }
+
+  // Add item to local storage. If it is already there, it will override the existing item.
+  var todoItem = { todo: todo, completed: completed };
+  window.localStorage.setItem("todo-" + count, JSON.stringify(todoItem));
+
+  // Add event listener for the new task
+  $("#task-button-"+count).click(function() {
+    handleTodoDelete(this.id);
   });
 
-  // get weather
-  getLocalWeather();
-});
+  // Update the todo list count in local storage
+  count++;
+  window.localStorage.setItem("todo-count", count);
+}
 
 // function to get the current weather
-var getLocalWeather = function () {
+var loadLocalWeather = function () {
   // Base URL to get icons
   const weatherAPIIconBaseUrl = "https://openweathermap.org/img/wn/";
 
@@ -206,6 +262,3 @@ function setQuote(requestUrl) {
   }
 }
 setQuote(requestUrl);
-
-
-
