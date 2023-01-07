@@ -14,22 +14,20 @@
   object-fit: cover;
 }
 
-.header h1 {
-  position: absolute;
-  padding-top: 25px;
-  padding-left: 25px;
-  padding-bottom: 25px;
-  color: white;
+.display-3{
+    position:absolute;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    color: white;
 }
 
 .date {
-  display: flex;
-  justify-content: right;
-  position: absolute;
-  padding: 25px;
-  margin-left: 1000px;
-  color: white;
-  font-size: 24px;
+    right: 1%;
+    position: absolute;
+    padding: 25px;
+    color: white;
+    font-size: 24px;
 }
 
 .main {
