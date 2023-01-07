@@ -33,6 +33,7 @@
 .main {
   display: grid;
   grid-template-columns: 75% 25%;
+  height: 100%;
 }
 
 .textarea {
@@ -47,6 +48,7 @@
   background-color: #35a7ff;
   display: flex;
   flex-direction: column;
+
 }
 
 .timeblock {
@@ -81,6 +83,7 @@
 }
 
 .time-block {
+  flex:1;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
