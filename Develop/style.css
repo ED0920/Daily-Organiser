@@ -113,6 +113,7 @@
 
 .weather {
   border: 1px black dotted;
+  padding: 10px;
 }
 
 .todo {
@@ -136,6 +137,8 @@
 .word-container {
   border: 1px black dotted;
   padding: 10px;
+  text-align: center;
+  position: relative;
 }
 
 .todo-not-done {
