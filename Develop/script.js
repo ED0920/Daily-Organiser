@@ -262,3 +262,65 @@ function setQuote(requestUrl) {
   }
 }
 setQuote(requestUrl);
+
+function setWord() {
+  var word1 = localStorage.getItem("word1");
+  var wordMeaning1 =localStorage.getItem(wordMeaning1);
+ 
+  var savedDate1 = localStorage.getItem('date1');//
+  var today1 = dayjs().format("YYYY-MM-DD");
+  localStorage.setItem('date1', today1);// saves the current day
+
+  var resetWord = false;
+  // if current day hasnt been saved in local storage the resetWord variable is set to true
+  if (savedDate1 === null) {
+    resetWord = true;
+
+  // if the current day is different to the date saved in local storage the resetWord is set to true
+  } else if (today1 !== savedDate1) {
+    resetWord = true;
+  }
+
+// if word are is not  saved in local storage or resetWord is true
+// then we get the random word from the api and save it in the local storage 
+   var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
+   if (word1 === null || resetWord ) {
+     fetch(requestUrl2)
+       .then(function (response) {
+
+        response.json().then(function (data) { // data is an array w/ a string inside
+          console.log(data);
+          var wordOfDay = data[0]
+          
+          
+         
+
+          localStorage.setItem("word1", wordOfDay );
+          document.getElementById("word").textContent =  wordOfDay ;
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello' )
+          .then(function (response){
+            response.json().then(function (data) {
+
+              var defOutput=data[0].meanings[0].definitions[0].definition;
+              defOutput = JSON.stringify(defOutput)
+
+               localStorage.setItem("wordMeaning1",defOutput );
+          document.getElementById("wordMeaning").textContent =  defOutput ;
+
+
+              console.log(defOutput);
+              
+            })
+          })
+
+         })
+        
+    })
+  } else {
+    
+    document.getElementById("word").textContent = word1 ;
+    document.getElementById("wordMeaning").textContent = wordMeaning1;
+   }
+}
+setWord();
+
