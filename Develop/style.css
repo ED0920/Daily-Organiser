@@ -14,22 +14,20 @@
   object-fit: cover;
 }
 
-.header h1 {
-  position: absolute;
-  padding-top: 25px;
-  padding-left: 25px;
-  padding-bottom: 25px;
-  color: white;
+.display-3{
+    position:absolute;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-bottom: 25px;
+    color: white;
 }
 
 .date {
-  display: flex;
-  justify-content: right;
-  position: absolute;
-  padding: 25px;
-  margin-left: 1000px;
-  color: white;
-  font-size: 24px;
+    right: 1%;
+    position: absolute;
+    padding: 25px;
+    color: white;
+    font-size: 24px;
 }
 
 .main {
@@ -49,6 +47,7 @@
   background-color: #35a7ff;
   display: flex;
   flex-direction: column;
+  align-content: stretch;
 }
 
 .timeblock {
@@ -83,6 +82,7 @@
 }
 
 .time-block {
+  flex:1;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -153,7 +153,9 @@
 .quote-container {
   border: 1px black dotted;
   padding: 10px;
+  /* box-sizing: border-box; */
   text-align: center;
+  position: relative;
 }
 
 #introQuotes {
@@ -172,8 +174,7 @@
 .quote #quote,
 #author {
   text-align: center;
-  color: blanchedalmond;
-  background-color: blueviolet;
+  color: black;
   display: inline-flex;
   padding: 10px;
   white-space: pre-line;
@@ -181,10 +182,15 @@
   margin-bottom: 10px;
 }
 
-#dove {
-  max-width: 20rem;
-  max-height: 8rem;
-  text-align: center;
+.quoteImg{
+  position: absolute;
+  left:0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  object-fit: cover;
+  z-index: -1;
 }
 
 .form-check-label {
