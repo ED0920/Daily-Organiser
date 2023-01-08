@@ -222,7 +222,8 @@ var loadLocalWeather = function () {
     });
 };
 
-var requestUrl = "https://api.quotable.io/random"; // it holds the api to get a random quote
+// it holds the api to get a random quote
+var requestUrl = "https://api.quotable.io/random"; 
 
 // this function gets the quote from the api, saves it in the local storage
 //and gets a new one when the date changes
@@ -245,7 +246,7 @@ function setQuote(requestUrl) {
   }
 
   // if quote or author are not saved in local storage or resetQuote is true
-  // then we get the random quote with its author from the api and save it in the local storage
+  // then we get a new random quote with its author from the api, save it in the local storage and display
   if (quote1 === null || author1 === null || resetQuote) {
     fetch(requestUrl).then(function (response) {
       response.json().then(function (data) {
@@ -256,18 +257,26 @@ function setQuote(requestUrl) {
         document.getElementById("author").textContent = data.author;
       });
     });
+  //If quote and its author are not saved in local storage or resetQuote is true
+  //then display the new quote and its author 
   } else {
     document.getElementById("quote").textContent = '"' + quote1 + '"';
     document.getElementById("author").textContent = author1;
   }
 }
+// call the function
+setQuote(requestUrl)
 
-setQuote(requestUrl);
-
+// to display word of the day.
 function setWord() {
+  //declaring and initialising variables for the random word
+  // of the day and its meaning in local storage
   var word1 = localStorage.getItem("word1");
   var wordMeaning1 =localStorage.getItem("wordMeaning1");
- 
+
+   //declaring and initialising variables for the date
+  //in local storage to be able, later on, to store or change wordOfDay according
+  //whether if is a new day or not, accordingly
   var savedDate1 = localStorage.getItem('date1');//
   var today1 = dayjs().format("YYYY-MM-DD");
   localStorage.setItem('date1', today1);// saves the current day
@@ -282,52 +291,50 @@ function setWord() {
     resetWord = true;
   }
 
-// if word are is not  saved in local storage or resetWord is true
-// then we get the random word from the api and save it in the local storage 
-   var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
-   if (word1 === null || wordMeaning1 === null || resetWord ) {
-     fetch(requestUrl2)
-       .then(function (response) {
+  // if word1 are is not  saved in local storage or WordMeaning1 is null or resetWord is true
+  // then we get a new random word from the api and save it in the local storage 
+  var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
+  if (word1 === null || wordMeaning1 === null || resetWord ) {
+    fetch(requestUrl2)
+      .then(function (response) {
 
-        response.json().then(function (data) { // data is an array w/ a string inside
+        response.json().then(function (data) { // data is an array wwith a string inside
           console.log(data);
           var wordOfDay = data[0]
-          
-          
-         
-
+          // saving in local storage and displaying on website.
           localStorage.setItem("word1", wordOfDay );
           document.getElementById("word").textContent =  wordOfDay ;
-          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay )
+          //API for definition of wordOfDay
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay);
           .then(function (response){
+            //if the response from the API is Ok then display definition
             if (response.ok) {
                   response.json().then(function (data) {
-
+                    //grabbing the definition object from the data array and converting it to string
                     var defOutput=data[0].meanings[0].definitions[0].definition;
                     defOutput = JSON.stringify(defOutput)
-
+                    //saving word definition for display on website
                     localStorage.setItem("wordMeaning1",defOutput );
-                document.getElementById("wordMeaning").textContent =  defOutput ;
-
-
-                    console.log(defOutput);
+                    document.getElementById("wordMeaning").textContent =  defOutput;
                     
                   })
+             // otherwise if the definition is not in the definition API, display error message     
             } else {
-              
               localStorage.setItem("wordMeaning1", "Definition not found." );
               document.getElementById("wordMeaning").textContent =  "Definition not found.";
             }
           })
 
-         })
+        })
         
     })
+    // if wordOfDay and its definition are saved in local storage or resetWord is false
+    // then display them.
   } else {
     
     document.getElementById("word").textContent = word1 ;
     document.getElementById("wordMeaning").textContent = wordMeaning1;
-   }
+  }
 }
-setWord();
+setWord();// call the function
 
