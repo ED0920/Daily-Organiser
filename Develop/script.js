@@ -300,18 +300,24 @@ function setWord() {
           document.getElementById("word").textContent =  wordOfDay ;
           fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay )
           .then(function (response){
-            response.json().then(function (data) {
+            if (response.ok) {
+                  response.json().then(function (data) {
 
-              var defOutput=data[0].meanings[0].definitions[0].definition;
-              defOutput = JSON.stringify(defOutput)
+                    var defOutput=data[0].meanings[0].definitions[0].definition;
+                    defOutput = JSON.stringify(defOutput)
 
-               localStorage.setItem("wordMeaning1",defOutput );
-          document.getElementById("wordMeaning").textContent =  defOutput ;
+                    localStorage.setItem("wordMeaning1",defOutput );
+                document.getElementById("wordMeaning").textContent =  defOutput ;
 
 
-              console.log(defOutput);
+                    console.log(defOutput);
+                    
+                  })
+            } else {
               
-            })
+              localStorage.setItem("wordMeaning1", "Definition not found." );
+              document.getElementById("wordMeaning").textContent =  "Definition not found.";
+            }
           })
 
          })
