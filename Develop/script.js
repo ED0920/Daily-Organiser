@@ -344,7 +344,7 @@ function setWord() {
 
 function loadNews() {
   const newAPIUrl =
-    "https://newsapi.org/v2/top-headlines?country=au&apiKey=6bfbc7eb141343d58fa5803ccb916e9a";
+    'http://api.mediastack.com/v1/news?access_key=bf07b14ff7f7f445faf52417d8bdb544&countries=au';
 
   // Request top news headlines
   fetch(newAPIUrl)
@@ -352,14 +352,14 @@ function loadNews() {
       return response.json();
     })
     .then(function (data) {
+
       var newsImageEl = $("#news-image")[0];
       var newsTitleEl = $("#news-title")[0];
       var newsLinkEl = $("#news-url")[0];
 
-      console.log(data);
+      newsTitleEl.innerHTML = data.data[0].title;
+      newsImageEl.src = data.data[0].image;
+      newsLinkEl.href = data.data[0].url;
 
-      newsTitleEl.innerHTML = data.articles[0].title;
-      newsImageEl.src = data.articles[0].urlToImage;
-      newsLinkEl.href = data.articles[0].url;
     });
 }
