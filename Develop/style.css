@@ -138,6 +138,14 @@
   padding: 10px;
 }
 
+#word {
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 20px;
+
+}
+
 .todo-not-done {
   text-decoration: none;
 }
