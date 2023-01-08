@@ -261,11 +261,12 @@ function setQuote(requestUrl) {
     document.getElementById("author").textContent = author1;
   }
 }
+
 setQuote(requestUrl);
 
 function setWord() {
   var word1 = localStorage.getItem("word1");
-  var wordMeaning1 =localStorage.getItem(wordMeaning1);
+  var wordMeaning1 =localStorage.getItem("wordMeaning1");
  
   var savedDate1 = localStorage.getItem('date1');//
   var today1 = dayjs().format("YYYY-MM-DD");
@@ -284,7 +285,7 @@ function setWord() {
 // if word are is not  saved in local storage or resetWord is true
 // then we get the random word from the api and save it in the local storage 
    var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
-   if (word1 === null || resetWord ) {
+   if (word1 === null || wordMeaning1 === null || resetWord ) {
      fetch(requestUrl2)
        .then(function (response) {
 
@@ -297,7 +298,7 @@ function setWord() {
 
           localStorage.setItem("word1", wordOfDay );
           document.getElementById("word").textContent =  wordOfDay ;
-          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/hello' )
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay )
           .then(function (response){
             response.json().then(function (data) {
 
