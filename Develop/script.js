@@ -344,7 +344,7 @@ function setWord() {
 
 function loadNews() {
   const newAPIUrl =
-    'http://api.mediastack.com/v1/news?access_key=bf07b14ff7f7f445faf52417d8bdb544&countries=au';
+    'https://api.mediastack.com/v1/news?access_key=bf07b14ff7f7f445faf52417d8bdb544&countries=au';
 
   // Request top news headlines
   fetch(newAPIUrl)
