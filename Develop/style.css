@@ -14,20 +14,20 @@
   object-fit: cover;
 }
 
-.display-3{
-    position:absolute;
-    padding-top: 25px;
-    padding-left: 25px;
-    padding-bottom: 25px;
-    color: white;
+.display-3 {
+  position: absolute;
+  padding-top: 25px;
+  padding-left: 25px;
+  padding-bottom: 25px;
+  color: white;
 }
 
 .date {
-    right: 1%;
-    position: absolute;
-    padding: 25px;
-    color: white;
-    font-size: 24px;
+  right: 1%;
+  position: absolute;
+  padding: 25px;
+  color: white;
+  font-size: 24px;
 }
 
 .main {
@@ -82,7 +82,7 @@
 }
 
 .time-block {
-  flex:1;
+  flex: 1;
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -118,12 +118,12 @@
   background-color: rgba(135, 117, 213, 0.5);
 }
 
-.card-title{
+.card-title {
   color: inherit;
 }
 
-.card-subtitle{
-  margin-top:1;
+.card-subtitle {
+  margin-top: 1;
   margin-bottom: 2;
 }
 
@@ -131,7 +131,7 @@
 .todo {
   border: 1px black dotted;
   padding: 10px;
-  background-color: rgba(255, 89, 94, 0.5)
+  background-color: rgba(255, 89, 94, 0.5);
 }
 
 #todo-header {
@@ -157,12 +157,12 @@
 
 .word-container {
   border: 1px black dotted;
-  background-color: rgba(138, 201, 38, 0.40);
+  background-color: rgba(138, 201, 38, 0.4);
   /* padding: 10px; */
 }
 .word-container h3 {
   text-align: center;
-  padding:10px;
+  padding: 10px;
 }
 .wordday {
   text-align: center;
@@ -171,7 +171,7 @@
   margin-bottom: 20px;
 }
 
-.wordmeaning{
+.wordmeaning {
   text-align: center;
   padding: 10px;
 }
@@ -195,13 +195,13 @@
   margin-bottom: 10px;
 }
 
-.quote-image{
+.quote-image {
   position: absolute;
-  left:0;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: .5;
+  opacity: 0.5;
   object-fit: cover;
   z-index: -1;
 }
