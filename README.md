@@ -1,15 +1,4 @@
 # Daily Organiser
-
-<!-- Update todo acceptance criteria to include criteria for delete button functionality
-
-Update todo acceptance criteria to include criteria for saving todo actions to local storage
-
-Update "standard business hours" to "uni hours" or something similar
-
-Screenshot will need to be updated when project finalised
-
-Add links to deployment and project when available -->
-
 ## User Story
 ````
 AS A Uni student with a busy schedule
