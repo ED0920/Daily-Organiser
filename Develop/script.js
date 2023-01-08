@@ -40,6 +40,12 @@ $(function () {
 
   // Load today's weather
   loadLocalWeather();
+
+  // Load word of the day
+  setWord();
+
+  // Load quote of the day
+  setQuote(requestUrl)
 });
 
 /*
@@ -264,8 +270,7 @@ function setQuote(requestUrl) {
     document.getElementById("author").textContent = author1;
   }
 }
-// call the function
-setQuote(requestUrl)
+
 
 // to display word of the day.
 function setWord() {
@@ -305,7 +310,7 @@ function setWord() {
           localStorage.setItem("word1", wordOfDay );
           document.getElementById("word").textContent =  wordOfDay ;
           //API for definition of wordOfDay
-          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay);
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay)
           .then(function (response){
             //if the response from the API is Ok then display definition
             if (response.ok) {
@@ -336,5 +341,5 @@ function setWord() {
     document.getElementById("wordMeaning").textContent = wordMeaning1;
   }
 }
-setWord();// call the function
+
 
