@@ -68,7 +68,7 @@ function loadTodoList() {
 
 function handleAddTodo() {
   addTodoItem($("#event-input").val(), false);
-  $("#event-input").val("Enter event!");
+  $("#event-input").val("");
 }
 
 function handleCheckboxChange() {
