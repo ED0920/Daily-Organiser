@@ -300,40 +300,50 @@ function setWord() {
   }
 
   // if word1 are is not  saved in local storage or WordMeaning1 is null or resetWord is true
-  // then we get a new random word from the api and save it in the local storage
-  var requestUrl2 = "https://random-word-api.herokuapp.com/word"; // it holds the api to get a random word
-  if (word1 === null || wordMeaning1 === null || resetWord) {
-    fetch(requestUrl2).then(function (response) {
-      response.json().then(function (data) {
-        // data is an array wwith a string inside
-        console.log(data);
-        var wordOfDay = data[0];
-        // saving in local storage and displaying on website.
-        localStorage.setItem("word1", wordOfDay);
-        document.getElementById("word").textContent = wordOfDay;
-        //API for definition of wordOfDay
-        fetch(
-          "https://api.dictionaryapi.dev/api/v2/entries/en/" + wordOfDay
-        ).then(function (response) {
-          //if the response from the API is Ok then display definition
-          if (response.ok) {
-            response.json().then(function (data) {
-              //grabbing the definition object from the data array and converting it to string
-              var defOutput = data[0].meanings[0].definitions[0].definition;
-              defOutput = JSON.stringify(defOutput);
-              //saving word definition for display on website
-              localStorage.setItem("wordMeaning1", defOutput);
-              document.getElementById("wordMeaning").textContent = defOutput;
-            });
-            // otherwise if the definition is not in the definition API, display error message
-          } else {
-            localStorage.setItem("wordMeaning1", "Definition not found.");
-            document.getElementById("wordMeaning").textContent =
-              "Definition not found.";
-          }
-        });
-      });
-    });
+  // then we get a new random word from the api and save it in the local storage 
+  var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
+  if (word1 === null || resetWord ) {
+    fetch(requestUrl2)
+      .then(function (response) {
+
+        response.json().then(function (data) { // data is an array wwith a string inside
+          var wordOfDay = data[0];
+
+          // saving in local storage and displaying on website.
+          localStorage.setItem("word1", wordOfDay );
+          document.getElementById("word").textContent =  wordOfDay ;
+          //API for definition of wordOfDay
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay)
+          .then(function (response){
+            //if the response from the API is Ok then display definition
+            if (response.ok) {
+                  response.json().then(function (data) {
+                    //grabbing the definition object from the data array and converting it to string
+                    var defOutput=data[0].meanings[0].definitions[0].definition;
+                    defOutput = JSON.stringify(defOutput)
+                    //saving word definition for display on website
+                    localStorage.setItem("wordMeaning1",defOutput );
+                    document.getElementById("wordMeaning").textContent =  defOutput;
+                    
+                  })
+             // otherwise if the definition is not in the definition API, display error message     
+            } else {
+              localStorage.setItem("wordMeaning1", "Definition not found." );
+              document.getElementById("wordMeaning").textContent =  "Sorry, Definition not found. You can search the definition with" +
+              "the World Reference dictionary by clicking the Search button and typing the desired word there";
+  
+              var searchBtn = document.getElementById("searchBtn");
+              searchBtn.style.display = 'block';
+              searchBtn.onclick = function() {
+                window.location.replace("https://www.wordreference.com/definition/");
+              }
+            }
+          })
+
+        })
+        
+    })
+
     // if wordOfDay and its definition are saved in local storage or resetWord is false
     // then display them.
   } else {
