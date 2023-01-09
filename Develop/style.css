@@ -146,6 +146,10 @@
 
 }
 
+#searchBtn {
+  display: none;
+}
+
 .todo-not-done {
   text-decoration: none;
 }

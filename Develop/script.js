@@ -321,7 +321,17 @@ function setWord() {
              // otherwise if the definition is not in the definition API, display error message     
             } else {
               localStorage.setItem("wordMeaning1", "Definition not found." );
-              document.getElementById("wordMeaning").textContent =  "Definition not found.";
+              document.getElementById("wordMeaning").textContent =  "Sorry, Definition not found. You can search the definition with" +
+              "the World Reference dictionary by clicking the Search button and typing the desired word there";
+  
+              document.getElementById("searchBtn").style = display;
+              
+              searchBtn.onclick = function() {
+                window.location.replace("http://www.sailthru.com/");
+              }
+
+
+
             }
           })
 
