@@ -2,35 +2,34 @@
 ## User Story
 ````
 AS A Uni student with a busy schedule
-I WANT a one-stop-shop daily organiser
-SO THAT I can write a ToDo list while seeing news, weather, word of the day & daily quote
+I WANT a one-stop-shop scheduler for my day
+SO THAT I can write a ToDo list while seeing News, Weather, Word of the Day & Daily Quote
 ````
 
 ## Acceptance Criteria
 ````
-GIVEN I am using a daily organiser to organise my day
-WHEN I open the organiser
-THEN the current day is displayed at the top of the calendar
+GIVEN I am using a scheduler to schedule my day
+WHEN I open the scheduler
+THEN the current day is displayed at the top of the page
 WHEN I want to write todays ToDo list
 THEN I am presented with an active list writer on the right 
 WHEN I enter an event into the ToDo line & press enter 
-THEN the event is added to the list and saved in the local storage
-for me to see it again when going back to open the dayly organiser.
+THEN the event is added to the list and saved in local storage
 WHEN I want to cross off an event in the ToDo list 
 THEN I click on the check box next to the event
-WHEN I want to delete an event in the ToDo list
-THEN I click on the bin icon to the right of the event deleting it from the local storage as well. 
+WHEN I want to delete an event in the ToDo list remotely & locally
+THEN I click on the bin icon to the right of the event
 WHEN I want to see the weather in Sydney
 THEN I am presented with todays forecast on the right
-WHEN I want to see the daily News
-THEN I am presented with the news stream on the right
+WHEN I want to see the daily News headline
+THEN I am presented with a News headline on the right
 WHEN I want a Word of the Day 
-THEN I am presented with a WotD on the right 
+THEN I am presented with a Word of the Day on the right 
 WHEN I want today's quote 
 THEN I am presented with today's quote on the right 
 WHEN I scroll down
-THEN I am presented with timeblocks for standard studying hours, even though I can also add non Uni studing related events.
-WHEN I click into a timeblock
+THEN I am presented with study-hour timeblocks
+WHEN I click on a timeblock
 THEN I can enter an event
 WHEN I click the save button for that timeblock
 THEN the text for that event is saved in local storage
@@ -42,10 +41,13 @@ THEN the saved events persist
 - HMTL using VS Code
 - js & json (setting, country-codes, script)
 - CSS (.style, .reset, fontawesome.com)
-- APIs for weather, news, Word of the Day & Today's Quote 
+- APIs for Weather, News, Word of the Day & Today's Quote
 
 ## Screenshot
-Depicts apps functionality 
-![Screenshot (24)](https://user-images.githubusercontent.com/117637052/210735509-40748c16-7e1d-4551-bbc9-6da226b5f0e4.png)
+The following animation depicts app functionality:
+
+![Work Day Scheduler](https://user-images.githubusercontent.com/117637052/211278078-a9458d12-762c-4609-97b5-ff3b23cf48f7.gif)
 
 ## Link to deployed application
+
+https://ed0920.github.io/Daily-Organiser/
