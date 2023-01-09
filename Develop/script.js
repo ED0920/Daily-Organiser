@@ -335,7 +335,7 @@ function setWord() {
               var searchBtn = document.getElementById("searchBtn");
               searchBtn.style.display = 'block';
               searchBtn.onclick = function() {
-                window.location.replace("https://www.wordreference.com/definition/");
+                window.open("https://www.wordreference.com/definition/","_blank");
               }
             }
           })
