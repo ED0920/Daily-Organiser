@@ -2,6 +2,26 @@
 var count = 0;
 
 $(function () {
+  // Load calendar
+  loadCalendar();
+
+  // Load the 'todo' list
+  loadTodoList();
+
+  // Load today's weather
+  loadLocalWeather();
+
+  // Load word of the day
+  setWord();
+
+  // Load quote of the day
+  setQuote(requestUrl);
+
+  // Load latest news headline
+  loadNews();
+});
+
+function loadCalendar() {
   let currentDateEl = document.getElementById("currentDay");
   var d = new dayjs().format("dddd, MMMM DD");
   const currentD = new Date();
@@ -34,17 +54,11 @@ $(function () {
       document.getElementById("text" + i).style.backgroundColor = "#cee4f4";
     }
   }
-
-  // Load the 'todo' list
-  loadTodoList();
-
-  // Load today's weather
-  loadLocalWeather();
-});
+}
 
 /*
  * This function loads and initialises the todo list.
- */ 
+ */
 function loadTodoList() {
   // check if 'todo-count' has been saved to local storage
   // if it has not, save and set it to zero.
@@ -94,22 +108,20 @@ function handleCheckboxChange() {
 }
 
 function handleTodoDelete(id) {
-
   //todo-button-x
-  var deleteId = 'todo-' + id.slice(12);
+  var deleteId = "todo-" + id.slice(12);
 
   // Update local storage to remove item
   // Create an array with all the todo items we want to keep
   // Adjust the ids
   var todoCount = parseInt(localStorage.getItem("todo-count"));
   var todoList = [];
-  for (var i = 0, j = 0; i < todoCount; i++)
-  {
-    var todoKey = "todo-"+i;
+  for (var i = 0, j = 0; i < todoCount; i++) {
+    var todoKey = "todo-" + i;
 
     // If the key is for the item to delete, do not add it to the array
     if (deleteId != todoKey) {
-      todoList.push([ 'todo-'+j, window.localStorage.getItem(todoKey)]);
+      todoList.push(["todo-" + j, window.localStorage.getItem(todoKey)]);
       j++;
     }
 
@@ -118,21 +130,19 @@ function handleTodoDelete(id) {
   }
 
   // Restore the items. This will restore all except the item deleted.
-  for (var i = 0; i < todoList.length; i++)
-  {
+  for (var i = 0; i < todoList.length; i++) {
     window.localStorage.setItem(todoList[i][0], todoList[i][1]);
   }
 
   // Update the todo list count in local storage
   todoCount--;
 
-  if (todoCount < 0)
-  {
+  if (todoCount < 0) {
     todoCount = 0;
   }
 
   window.localStorage.setItem("todo-count", todoCount);
-  
+
   window.location.reload();
 }
 
@@ -185,7 +195,7 @@ function addTodoItem(todo, completed) {
   window.localStorage.setItem("todo-" + count, JSON.stringify(todoItem));
 
   // Add event listener for the new task
-  $("#task-button-"+count).click(function() {
+  $("#task-button-" + count).click(function () {
     handleTodoDelete(this.id);
   });
 
@@ -223,7 +233,7 @@ var loadLocalWeather = function () {
 };
 
 // it holds the api to get a random quote
-var requestUrl = "https://api.quotable.io/random"; 
+var requestUrl = "https://api.quotable.io/random";
 
 // this function gets the quote from the api, saves it in the local storage
 //and gets a new one when the date changes
@@ -257,36 +267,34 @@ function setQuote(requestUrl) {
         document.getElementById("author").textContent = data.author;
       });
     });
-  //If quote and its author are not saved in local storage or resetQuote is true
-  //then display the new quote and its author 
+    //If quote and its author are not saved in local storage or resetQuote is true
+    //then display the new quote and its author
   } else {
     document.getElementById("quote").textContent = '"' + quote1 + '"';
     document.getElementById("author").textContent = author1;
   }
 }
-// call the function
-setQuote(requestUrl)
 
 // to display word of the day.
 function setWord() {
   //declaring and initialising variables for the random word
   // of the day and its meaning in local storage
   var word1 = localStorage.getItem("word1");
-  var wordMeaning1 =localStorage.getItem("wordMeaning1");
+  var wordMeaning1 = localStorage.getItem("wordMeaning1");
 
-   //declaring and initialising variables for the date
+  //declaring and initialising variables for the date
   //in local storage to be able, later on, to store or change wordOfDay according
   //whether if is a new day or not, accordingly
-  var savedDate1 = localStorage.getItem('date1');//
+  var savedDate1 = localStorage.getItem("date1"); //
   var today1 = dayjs().format("YYYY-MM-DD");
-  localStorage.setItem('date1', today1);// saves the current day
+  localStorage.setItem("date1", today1); // saves the current day
 
   var resetWord = false;
   // if current day hasnt been saved in local storage the resetWord variable is set to true
   if (savedDate1 === null) {
     resetWord = true;
 
-  // if the current day is different to the date saved in local storage the resetWord is set to true
+    // if the current day is different to the date saved in local storage the resetWord is set to true
   } else if (today1 !== savedDate1) {
     resetWord = true;
   }
@@ -335,13 +343,33 @@ function setWord() {
         })
         
     })
+
     // if wordOfDay and its definition are saved in local storage or resetWord is false
     // then display them.
   } else {
-    
-    document.getElementById("word").textContent = word1 ;
+    document.getElementById("word").textContent = word1;
     document.getElementById("wordMeaning").textContent = wordMeaning1;
   }
 }
-setWord();// call the function
 
+function loadNews() {
+  const newAPIUrl =
+    'https://api.mediastack.com/v1/news?access_key=bf07b14ff7f7f445faf52417d8bdb544&countries=au';
+
+  // Request top news headlines
+  fetch(newAPIUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+      var newsImageEl = $("#news-image")[0];
+      var newsTitleEl = $("#news-title")[0];
+      var newsLinkEl = $("#news-url")[0];
+
+      newsTitleEl.innerHTML = data.data[0].title;
+      newsImageEl.src = data.data[0].image;
+      newsLinkEl.href = data.data[0].url;
+
+    });
+}
