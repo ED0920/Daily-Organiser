@@ -17,9 +17,10 @@
 .display-3 {
   position: absolute;
   padding-top: 25px;
-  padding-left: 25px;
+  padding-left: 100px;
   padding-bottom: 25px;
   color: white;
+  font-weight: bold;
 }
 
 .date {
@@ -28,6 +29,7 @@
   padding: 25px;
   color: white;
   font-size: 24px;
+  font-weight: bold;
 }
 
 .main {
@@ -122,6 +124,9 @@
   color: inherit;
 }
 
+.card-body{
+  padding-left:10px;
+}
 .card-subtitle {
   margin-top: 1;
   margin-bottom: 2;
@@ -130,7 +135,7 @@
 /* style todo list container */
 .todo {
   border: 1px black dotted;
-  padding: 10px;
+  padding: 20px;
   background-color: rgba(255, 89, 94, 0.5);
 }
 
@@ -162,7 +167,7 @@
 /* style news container */
 .news {
   border: 1px black dotted;
-  padding: 10px 10px 10px 10px;
+  padding: 10px 20px 10px 20px;
   background-color: rgba(120, 179, 219, 0.75);
 }
 
@@ -171,21 +176,23 @@
 .word-container {
   border: 1px black dotted;
   background-color: rgba(138, 201, 38, 0.4);
-  /* padding: 10px; */
+  padding: 10px 20px 10px 20px;
+  text-align: center;
 }
 .word-container h3 {
-  text-align: center;
+ 
   padding: 10px;
 }
 .wordday {
-  text-align: center;
+
   font-size: 20px;
   font-style: italic;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .wordmeaning {
-  text-align: center;
+  
   padding: 10px;
 }
 
@@ -193,13 +200,15 @@
 
 .quote-container {
   border: 1px black dotted;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   text-align: center;
   position: relative;
 }
 
+.quote h3{
+  padding-left: 10px;
+}
 .quote-content {
-  text-align: center;
   color: black;
   display: inline-flex;
   padding: 10px;
