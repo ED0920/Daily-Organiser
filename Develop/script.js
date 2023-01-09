@@ -294,13 +294,13 @@ function setWord() {
   // if word1 are is not  saved in local storage or WordMeaning1 is null or resetWord is true
   // then we get a new random word from the api and save it in the local storage 
   var requestUrl2 = 'https://random-word-api.herokuapp.com/word';// it holds the api to get a random word
-  if (word1 === null || wordMeaning1 === null || resetWord ) {
+  if (word1 === null || resetWord ) {
     fetch(requestUrl2)
       .then(function (response) {
 
         response.json().then(function (data) { // data is an array wwith a string inside
-          console.log(data);
-          var wordOfDay = data[0]
+          var wordOfDay = data[0];
+
           // saving in local storage and displaying on website.
           localStorage.setItem("word1", wordOfDay );
           document.getElementById("word").textContent =  wordOfDay ;
@@ -324,14 +324,11 @@ function setWord() {
               document.getElementById("wordMeaning").textContent =  "Sorry, Definition not found. You can search the definition with" +
               "the World Reference dictionary by clicking the Search button and typing the desired word there";
   
-              document.getElementById("searchBtn").style = display;
-              
+              var searchBtn = document.getElementById("searchBtn");
+              searchBtn.style.display = 'block';
               searchBtn.onclick = function() {
                 window.location.replace("https://www.wordreference.com/definition/");
               }
-
-
-
             }
           })
 
