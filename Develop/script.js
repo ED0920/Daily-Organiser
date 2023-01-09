@@ -305,7 +305,7 @@ function setWord() {
           localStorage.setItem("word1", wordOfDay );
           document.getElementById("word").textContent =  wordOfDay ;
           //API for definition of wordOfDay
-          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay);
+          fetch('https://api.dictionaryapi.dev/api/v2/entries/en/'+ wordOfDay)
           .then(function (response){
             //if the response from the API is Ok then display definition
             if (response.ok) {
@@ -327,7 +327,7 @@ function setWord() {
               document.getElementById("searchBtn").style = display;
               
               searchBtn.onclick = function() {
-                window.location.replace("http://www.sailthru.com/");
+                window.location.replace("https://www.wordreference.com/definition/");
               }
 
 
